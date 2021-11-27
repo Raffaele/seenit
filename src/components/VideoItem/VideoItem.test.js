@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { VideoItem } from "./VideoItem";
 
 describe('VideoItem component', () =>
@@ -33,6 +33,28 @@ describe('VideoItem component', () =>
     {
       const nameDiv = screen.getByText(row.likes);
       expect(nameDiv).toBeInTheDocument();
+    });
+  });
+
+  describe('actions', () =>
+  {
+    let onImageClick = jest.fn();
+    const row = {
+      duration: 123.3232,
+      firstName: 'Foo',
+      lastName: 'Bar',
+      thumbnailUrl: 'http://hello-world/',
+      likes: 35
+    };
+    beforeEach(() =>
+    {
+      render(<VideoItem item={row} onImageClick={onImageClick} />);
+    });
+    it('should call the onImageClick prop once image is clicked', () =>
+    {
+      const img = screen.getByAltText('Foo thumbnail');
+      fireEvent.click(img);
+      expect(onImageClick).toHaveBeenCalled();
     });
   });
 

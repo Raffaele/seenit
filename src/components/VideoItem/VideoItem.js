@@ -9,6 +9,7 @@ const Root = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const TimeLabel = styled.span`
@@ -40,7 +41,7 @@ const LikePanel = styled.div`
 
 export const VideoItem = (props) =>
 {
-  const { item } = props;
+  const { item, onImageClick } = props;
 
   const getDisplayTime = (timeInMinutes) =>
   {
@@ -63,7 +64,7 @@ export const VideoItem = (props) =>
   return <Root>
     <ImageWrapper>
       <TimeLabel>{displayTime}</TimeLabel>
-      <Thumbnail src={item.thumbnailUrl} alt={`${item.firstName} thumbnail`} />
+      <Thumbnail onClick={onImageClick} src={item.thumbnailUrl} alt={`${item.firstName} thumbnail`} />
     </ImageWrapper>
     <TextInfo>
       <div>{item.firstName} {item.lastName}</div>
@@ -73,6 +74,7 @@ export const VideoItem = (props) =>
 };
 
 VideoItem.propsType = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
