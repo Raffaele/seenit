@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Seenit Library Technical Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Hello, we'd like you to create a Library displaying multiple videos and images.
+- Design link: https://zpl.io/VkPjq8K . You'll have to login and make you sure you've been added to the project.
+- We'd love you to be creative, use latest technologies and 3rd parties if needed, and of course, we want to see your testing strategy.
+- Don't worry if you can't finish this, just add some notes and we can go through them on the next step of the interview.
 
-## Available Scripts
+## API
 
-In the project directory, you can run:
+This endpoint gives access to authorised users to view some sample data for the purpose of Seenit Technical tests.
 
-### `yarn start`
+### Available end points
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. https://tech-test-service-staging.seenit.studio/v1/uploads
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Pagination
 
-### `yarn test`
+This API requests 50 records by default. However, you can change this by calling the above with the following query parameters.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+page=1
+   > minimum = 1
+perPage=10
+   > minimum = 1
+   > maximum = 100
+```
 
-### `yarn build`
+E.g.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Wrong path
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+https://tech-test.staging.seenit.io/v1/uploads?page=3&perPage=40
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Authorization
 
-### `yarn eject`
+You will need to call the endpoint with Authorization header as follows:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    curl -H "Authorization: BASIC <<your_email_address>>" \
+    "https://tech-test-service-staging.seenit.studio/v1/uploads"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Only authorised email addresses are allowed, make sure you've been added to the whitelist before.
 
-## Learn More
+## Acceptance Criteria
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Layout matches the design
+2. Tests for components
+3. Pagination || Infinite scrolling
+4. The user should be able to preview the asset by clicking on the tile (e.g. Modal)
