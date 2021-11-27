@@ -47,6 +47,6 @@ Only authorised email addresses are allowed, make sure you've been added to the 
 ## Acceptance Criteria
 
 1. Layout matches the design
-2. Tests for components
-3. Pagination || Infinite scrolling
+2. Tests for components (For this I had some issue, as I use to mock the component with enzyme, but react testing library doesn't allow me to do it)
+3. Pagination || Infinite scrolling (implemented Infinite scrolling)
 4. The user should be able to preview the asset by clicking on the tile (e.g. Modal)
